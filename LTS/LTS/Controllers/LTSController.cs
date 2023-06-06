@@ -4,54 +4,53 @@ using Route = LTS.Models.Route;
 using LTS.Services;
 using LTS.DTOs;
 
-namespace LTS.Controllers
+namespace LTS.Controllers;
+
+[ApiController]
+[Route("Routes")]
+public class LTSController : ControllerBase
 {
-    [ApiController]
-    [Route("Routes")]
-    public class LTSController : ControllerBase
+    private readonly IRoutesService _routesService;
+    public LTSController(IRoutesService service) 
+    { 
+        _routesService = service;      
+    }
+
+    [HttpGet("GetRoute")]
+    public RouteDTO GetRoutes(Guid id)
     {
-        private readonly IRoutesService _routesService;
-        public LTSController(IRoutesService service) 
-        { 
-            _routesService = service;      
-        }
-
-        [HttpGet("GetRoute")]
-        public RouteDTO GetRoutes(Guid id)
+        try
         {
-            try
-            {
-                return _routesService.GetRoute(id);
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
+            return _routesService.GetRoute(id);
         }
-
-        [HttpGet("GetRoutes")]
-        public List<RouteDTO> GetRoutes()
+        catch (Exception ex)
         {
-            List<RouteDTO> route = new();
-            return route;
-        }
 
-        [HttpPost("PostRoute")]
-        public async Task PostRoute(RouteDTO route)
+            throw;
+        }
+    }
+
+    [HttpGet("GetRoutes")]
+    public List<RouteDTO> GetRoutes()
+    {
+        List<RouteDTO> route = new();
+        return route;
+    }
+
+    [HttpPost("PostRoute")]
+    public async Task PostRoute(RouteDTO route)
+    {
+        try
         {
-            try
-            {
-                await _routesService.PostRoute(route);
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-
-
+            await _routesService.PostRoute(route);
         }
+        catch (Exception)
+        {
+
+            throw;
+        }
+
+
+
     }
 }

@@ -1,14 +1,13 @@
 ﻿using LTS.DTOs;
 
-namespace LTS.Services
+namespace LTS.Services;
+
+public interface IRoutesService
 {
-    public interface IRoutesService
-    {
-        public RouteDTO GetRoute(Guid id);
+    public RouteDTO GetRoute(Guid id);
 
-        public List<RouteDTO> GetRoutes();
+    public List<RouteDTO> GetRoutes();
 
-        public Task PostRoute(RouteDTO route);
+    public Task PostRoute(RouteDTO route);
 
-    }
 }

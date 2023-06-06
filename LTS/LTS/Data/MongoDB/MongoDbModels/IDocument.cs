@@ -1,12 +1,11 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace LTS.Data.MongoDB.MongoDBModels
+namespace LTS.Data.MongoDB.MongoDBModels;
+
+public interface IDocument            
 {
-    public interface IDocument            
-    {
-        [BsonId]
-        [BsonRepresentation(BsonType.String)]
-        string Id { get; set; }
-    }
+    [BsonId]
+    [BsonRepresentation(BsonType.String)]
+    string Id { get; set; }
 }

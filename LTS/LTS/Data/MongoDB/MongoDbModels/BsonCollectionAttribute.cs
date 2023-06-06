@@ -1,17 +1,16 @@
-﻿namespace LTS.Data.MongoDB.MongoDBModels
+﻿namespace LTS.Data.MongoDB.MongoDBModels;
+
+[AttributeUsage(AttributeTargets.Class, Inherited = false)]
+public class BsonCollectionAttribute : Attribute
 {
-    [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-    public class BsonCollectionAttribute : Attribute
+    public string CollectionName { get; }
+
+    public BsonCollectionAttribute(string collectionName)
     {
-        public string CollectionName { get; }
-
-        public BsonCollectionAttribute(string collectionName)
-        {
-            CollectionName = collectionName;
-        }
-
-
-
-
+        CollectionName = collectionName;
     }
+
+
+
+
 }

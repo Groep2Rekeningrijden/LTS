@@ -1,11 +1,10 @@
-﻿namespace LTS.DTOs
+﻿namespace LTS.DTOs;
+
+public class NodeDTO
 {
-    public class NodeDTO
-    {
-        public int Id { get; set; }
+    public int Id { get; set; }
 
-        public float Lat { get; set; }
+    public float Lat { get; set; }
 
-        public float Lon { get; set; }
-    }
+    public float Lon { get; set; }
 }

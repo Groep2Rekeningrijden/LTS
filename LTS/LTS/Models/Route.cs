@@ -1,13 +1,12 @@
 ﻿using LTS.Data.MongoDB.MongoDBModels;
 
-namespace LTS.Models
+namespace LTS.Models;
+
+[BsonCollection("Routes")]
+public class Route : Document
 {
-    [BsonCollection("Routes")]
-    public class Route : Document
-    {
-        public decimal PriceTotal { get; set; }
+    public decimal PriceTotal { get; set; }
 
-        public List<Segment> Segments { get; set; } = new List<Segment>();
+    public List<Segment> Segments { get; set; } = new List<Segment>();
 
-    }
 }
