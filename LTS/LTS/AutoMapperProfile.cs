@@ -2,19 +2,18 @@
 using LTS.DTOs;
 using LTS.Models;
 
-namespace LTS
+namespace LTS;
+
+public class AutoMapperProfile : Profile
 {
-    public class AutoMapperProfile : Profile
+    public AutoMapperProfile() 
     {
-        public AutoMapperProfile() 
-        {
-            CreateMap<NodeDTO, Node>();
-            CreateMap<Node, NodeDTO>();
+        CreateMap<NodeDTO, Node>();
+        CreateMap<Node, NodeDTO>();
 
-            CreateMap<WayDTO, Way>();
-            CreateMap<Way, WayDTO>();
-        }
-
-
+        CreateMap<WayDTO, Way>();
+        CreateMap<Way, WayDTO>();
     }
+
+
 }

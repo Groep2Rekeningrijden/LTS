@@ -1,9 +1,8 @@
-﻿namespace LTS.Models
+﻿namespace LTS.Models;
+
+public class Way
 {
-    public class Way
-    {
-        public int Id { get; set; }
+    public int Id { get; set; }
 
 
-    }
 }

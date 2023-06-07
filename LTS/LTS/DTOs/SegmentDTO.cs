@@ -1,18 +1,17 @@
 ﻿using LTS.Models;
 
-namespace LTS.DTOs
+namespace LTS.DTOs;
+
+public class SegmentDTO
 {
-    public class SegmentDTO
-    {
-        public DateTime Time { get; set; }
+    public DateTime Time { get; set; }
 
-        public decimal Price { get; set; }
+    public decimal Price { get; set; }
 
-        public NodeDTO Start { get; set; } = new NodeDTO();
+    public NodeDTO Start { get; set; } = new NodeDTO();
 
-        public WayDTO Way { get; set; } = new WayDTO();
+    public WayDTO Way { get; set; } = new WayDTO();
 
-        public NodeDTO End { get; set; } = new NodeDTO();
+    public NodeDTO End { get; set; } = new NodeDTO();
 
-    }
 }

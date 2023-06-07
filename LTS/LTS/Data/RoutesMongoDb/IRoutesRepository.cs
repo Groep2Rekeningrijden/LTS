@@ -1,25 +1,24 @@
 ﻿using LTS.Data.MongoDB.MongoDBModels;
 using System.Linq.Expressions;
 
-namespace LTS.Data.RoutesMongoDb
+namespace LTS.Data.RoutesMongoDb;
+
+public interface IRoutesRepository<TDocument> where TDocument : IDocument
 {
-    public interface IRoutesRepository<TDocument> where TDocument : IDocument
-    {
-        IEnumerable<TDocument> FilterBy(
+    IEnumerable<TDocument> FilterBy(
         Expression<Func<TDocument, bool>> filterExpression);
 
-        IEnumerable<TProjected> FilterBy<TProjected>(
-            Expression<Func<TDocument, bool>> filterExpression,
-            Expression<Func<TDocument, TProjected>> projectionExpression);
+    IEnumerable<TProjected> FilterBy<TProjected>(
+        Expression<Func<TDocument, bool>> filterExpression,
+        Expression<Func<TDocument, TProjected>> projectionExpression);
 
-        TDocument FilterByID(
+    TDocument FilterById(
         Expression<Func<TDocument, bool>> filterExpression);
 
-        Task InsertOneAsync(TDocument document);
+    Task InsertOneAsync(TDocument document);
 
-        //Task UpdateArray(CoordinatesModel model);
+    //Task UpdateArray(CoordinatesModel model);
 
-        bool VehicleIdExists(string vehicleId);
+    bool VehicleIdExists(string vehicleId);
 
-    }
 }

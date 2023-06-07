@@ -1,14 +1,13 @@
 ﻿using LTS.Models;
 
-namespace LTS.DTOs
+namespace LTS.DTOs;
+
+public class RouteDTO
 {
-    public class RouteDTO
-    {
-        public Guid Id { get; set; }
+    public Guid Id { get; set; }
 
-        public decimal PriceTotal { get; set; }
+    public decimal PriceTotal { get; set; }
 
-        public List<SegmentDTO> Segments { get; set; } = new List<SegmentDTO>();
+    public List<SegmentDTO> Segments { get; set; } = new List<SegmentDTO>();
 
-    }
 }

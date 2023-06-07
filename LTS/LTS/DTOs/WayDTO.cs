@@ -1,7 +1,6 @@
-﻿namespace LTS.DTOs
+﻿namespace LTS.DTOs;
+
+public class WayDTO
 {
-    public class WayDTO
-    {
-        public int Id { get; set; }
-    }
+    public int Id { get; set; }
 }
