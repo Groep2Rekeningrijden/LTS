@@ -1,5 +1,6 @@
 ﻿using LTS.Data.MongoDB;
 using LTS.Data.MongoDB.MongoDBModels;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Linq.Expressions;
 using System.Net;
@@ -24,10 +25,10 @@ public class RoutesRepository<TDocument> : IRoutesRepository<TDocument> where TD
             .FirstOrDefault())?.CollectionName;
     }
 
-    public virtual IEnumerable<TDocument> FilterBy(
+    public virtual async Task<IEnumerable<TDocument>> FilterBy(
         Expression<Func<TDocument, bool>> filterExpression)
     {
-        return _collection.Find(filterExpression).ToEnumerable();
+        return await _collection.Find(filterExpression).ToListAsync();
     }
 
     public virtual IEnumerable<TProjected> FilterBy<TProjected>(
@@ -55,10 +56,9 @@ public class RoutesRepository<TDocument> : IRoutesRepository<TDocument> where TD
         return _collection.Find(filter).Any();
     }
 
-    public virtual TDocument FilterById(
+    public virtual async Task<TDocument> FilterById(
         Expression<Func<TDocument, bool>> filterExpression)
     {
-        return _collection.Find(filterExpression).FirstOrDefault();
+        return await _collection.Find(filterExpression).SingleOrDefaultAsync();
     }
-
 }

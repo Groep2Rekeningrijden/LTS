@@ -17,15 +17,22 @@ public class RoutesService : IRoutesService
         _mapper = mapper;
     }
 
-    public RouteDTO GetRoute(Guid id)
+    public async Task<RouteDTO> GetRoute(Guid id)
     {
-        var route = _routesRepository.FilterById(x => x.Id == id.ToString());
+        var route = await _routesRepository.FilterById(x => x.Id == id.ToString());
         return ConvertToDTO(route);
     }
 
-    public List<RouteDTO> GetRoutes()
+    public async Task<List<RouteDTO>> GetRoutes()
     {
-        throw new NotImplementedException();
+        List<RouteDTO> res = new();
+        var routes = await _routesRepository.FilterBy(_=> true);
+
+        foreach (var route in routes) 
+        { 
+            res.Add(ConvertToDTO(route));       
+        }
+        return res;
     }
 
     public async Task PostRoute(RouteDTO route)
@@ -36,6 +43,7 @@ public class RoutesService : IRoutesService
         }
         catch (Exception)
         {
+
         }
     }
 

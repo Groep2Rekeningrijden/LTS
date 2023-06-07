@@ -1,6 +1,9 @@
+using Coordinate_Service.Models;
+using LTS.Consumer;
 using LTS.Data.MongoDB;
 using LTS.Data.RoutesMongoDb;
 using LTS.Services;
+using MassTransit;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
@@ -33,7 +36,26 @@ builder.Services.AddSwaggerGen(options =>
 
     options.OperationFilter<SecurityRequirementsOperationFilter>();
 });
+var rabbitMqSettings = builder.Configuration.GetSection(nameof(RabbitMqSettings)).Get<RabbitMqSettings>();
+builder.Services.AddMassTransit(mt => mt.AddMassTransit(x =>
+{
+    mt.AddConsumer<RouteConsumer>();
+    //mt.AddRequestClient<CoordsConsumer>();
 
+    x.UsingRabbitMq((ctx, cfg) =>
+    {
+        cfg.Host(rabbitMqSettings.Uri, "/", c =>
+        {
+            c.Username(rabbitMqSettings.UserName);
+            c.Password(rabbitMqSettings.Password);
+        });
+        cfg.ReceiveEndpoint("Routes", c =>
+        {
+            c.ConfigureConsumer<RouteConsumer>(ctx);
+
+        });
+    });
+}));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

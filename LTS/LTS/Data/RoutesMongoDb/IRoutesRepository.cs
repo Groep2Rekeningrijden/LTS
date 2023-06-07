@@ -5,14 +5,14 @@ namespace LTS.Data.RoutesMongoDb;
 
 public interface IRoutesRepository<TDocument> where TDocument : IDocument
 {
-    IEnumerable<TDocument> FilterBy(
+    Task<IEnumerable<TDocument>> FilterBy(
         Expression<Func<TDocument, bool>> filterExpression);
 
     IEnumerable<TProjected> FilterBy<TProjected>(
         Expression<Func<TDocument, bool>> filterExpression,
         Expression<Func<TDocument, TProjected>> projectionExpression);
 
-    TDocument FilterById(
+    Task<TDocument> FilterById(
         Expression<Func<TDocument, bool>> filterExpression);
 
     Task InsertOneAsync(TDocument document);

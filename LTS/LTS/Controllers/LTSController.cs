@@ -17,11 +17,11 @@ public class LTSController : ControllerBase
     }
 
     [HttpGet("GetRoute")]
-    public RouteDTO GetRoutes(Guid id)
+    public async Task<RouteDTO> GetRoute(Guid id)
     {
         try
         {
-            return _routesService.GetRoute(id);
+            return await _routesService.GetRoute(id);
         }
         catch (Exception ex)
         {
@@ -31,10 +31,16 @@ public class LTSController : ControllerBase
     }
 
     [HttpGet("GetRoutes")]
-    public List<RouteDTO> GetRoutes()
+    public async Task<ActionResult<List<RouteDTO>>> GetRoutes()
     {
-        List<RouteDTO> route = new();
-        return route;
+        try
+        {
+            return await _routesService.GetRoutes();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest();
+        }
     }
 
     [HttpPost("PostRoute")]
@@ -49,8 +55,5 @@ public class LTSController : ControllerBase
 
             throw;
         }
-
-
-
     }
 }

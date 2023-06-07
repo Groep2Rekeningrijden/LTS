@@ -9,5 +9,4 @@ public class RouteDTO
     public decimal PriceTotal { get; set; }
 
     public List<SegmentDTO> Segments { get; set; } = new List<SegmentDTO>();
-
 }
