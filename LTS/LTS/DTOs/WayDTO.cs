@@ -2,5 +2,5 @@
 
 public class WayDTO
 {
-    public int Id { get; set; }
+    public long Id { get; set; }
 }

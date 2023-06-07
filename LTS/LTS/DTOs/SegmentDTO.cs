@@ -1,6 +1,4 @@
-﻿using LTS.Models;
-
-namespace LTS.DTOs;
+﻿namespace LTS.DTOs;
 
 public class SegmentDTO
 {

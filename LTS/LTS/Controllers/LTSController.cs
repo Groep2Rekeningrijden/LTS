@@ -1,6 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using LTS.Models;
-using Route = LTS.Models.Route;
 using LTS.Services;
 using LTS.DTOs;
 
