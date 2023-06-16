@@ -22,6 +22,7 @@ public class RoutesService : IRoutesService
     public async Task<RouteDTO> GetRoute(Guid id)
     {
         var route = await _routesRepository.FilterById(x => x.Id == id.ToString());
+        Console.WriteLine(route);
         return ConvertToDTO(route);
     }
 
@@ -29,6 +30,8 @@ public class RoutesService : IRoutesService
     {
         List<RouteDTO> res = new();
         var routes = await _routesRepository.FilterBy(_=> true);
+
+        Console.WriteLine(routes);
 
         foreach (var route in routes) 
         { 
