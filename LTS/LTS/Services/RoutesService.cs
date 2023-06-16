@@ -52,9 +52,9 @@ public class RoutesService : IRoutesService
             Console.WriteLine(jsonContent);
             await _routesRepository.InsertOneAsync(ConvertToModel(route));
         }
-        catch (Exception)
+        catch (Exception e)
         {
-
+            Console.WriteLine(e);
         }
     }
 
@@ -90,7 +90,7 @@ public class RoutesService : IRoutesService
         var segments = new List<SegmentDTO>();
 
         dto.Id = Guid.Parse(route.Id);
-        dto.PriceTotal = dto.PriceTotal;
+        dto.PriceTotal = route.PriceTotal;
 
         foreach (var seg in route.Segments)
         {
