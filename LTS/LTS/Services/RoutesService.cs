@@ -2,6 +2,8 @@
 using LTS.Data.RoutesMongoDb;
 using LTS.DTOs;
 using LTS.Models;
+using System.Text.Json;
+using System.Text;
 using Route = LTS.Models.Route;
 
 namespace LTS.Services;
@@ -32,6 +34,7 @@ public class RoutesService : IRoutesService
         { 
             res.Add(ConvertToDTO(route));       
         }
+        Console.WriteLine("Number of routes: " + res.Count);
         return res;
     }
 
@@ -39,6 +42,11 @@ public class RoutesService : IRoutesService
     {
         try
         {
+            using StringContent jsonContent = new(
+            JsonSerializer.Serialize(route),
+            Encoding.UTF8,
+            "application/json");
+            Console.WriteLine(jsonContent);
             await _routesRepository.InsertOneAsync(ConvertToModel(route));
         }
         catch (Exception)

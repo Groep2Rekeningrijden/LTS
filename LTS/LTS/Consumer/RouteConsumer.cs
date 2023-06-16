@@ -17,6 +17,7 @@ namespace LTS.Consumer
 
         public async Task Consume(ConsumeContext<RouteDTO> context)
         {
+            Console.WriteLine("Message Received in event bus consumer!");
             await _routesService.PostRoute(ConvertToDTO(context));
         }
 

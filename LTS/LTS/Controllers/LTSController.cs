@@ -37,7 +37,7 @@ public class LTSController : ControllerBase
         }
         catch (Exception ex)
         {
-            return BadRequest();
+            return BadRequest(ex.Message);
         }
     }
 
@@ -50,7 +50,7 @@ public class LTSController : ControllerBase
         }
         catch (Exception)
         {
-
+            
             throw;
         }
     }
